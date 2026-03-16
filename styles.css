@@ -1,0 +1,119 @@
+/* ========== Custom Styles for Lekker Bezig Man ========== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===== PROJECT MODAL ===== */
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 3;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.12);
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.modal-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.45);
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.modal-arrow-left {
+  left: 16px;
+}
+
+.modal-arrow-right {
+  right: 16px;
+}
+
+.modal-slider {
+  position: relative;
+  background: #111;
+}
+
+.modal-close:hover,
+.modal-arrow:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* Gold gradient text */
+.text-gradient-gold {
+  background: linear-gradient(135deg, hsl(38, 92%, 50%) 0%, hsl(40, 90%, 62%) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Scroll reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* Header scrolled state */
+.header-scrolled {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 30px -4px rgba(0, 0, 0, 0.08);
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important;
+}
+
+/* Extra button active state */
+.extra-btn.active {
+  background: hsl(38, 92%, 50%) !important;
+  color: hsl(220, 25%, 10%) !important;
+  border-color: hsl(38, 92%, 50%) !important;
+  box-shadow: 0 4px 20px -2px hsla(38, 92%, 50%, 0.3);
+}
+
+/* Dropdown animation */
+#dropdown-menu {
+  animation: fadeInUp 0.2s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile menu animation */
+#mobile-menu {
+  animation: fadeInUp 0.3s ease-out;
+}
