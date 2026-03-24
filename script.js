@@ -225,3 +225,113 @@ function initProjectModal() {
     if (e.key === 'ArrowLeft') showPrev();
   });
 }
+
+const panelData = {
+  werktijden: {
+    label: "Planning",
+    title: "Werktijden: ma-vr 07:00–18:00",
+    text: "Tijdens reguliere werkdagen voeren wij inspecties, onderhoud en renovaties uit.",
+    extra: "Door duidelijke werktijden kunnen wij offertes en uitvoering beter plannen."
+  },
+  spoed: {
+    label: "Service",
+    title: "Spoedservice 24/7 beschikbaar",
+    text: "Bij lekkages, stormschade of acute dakproblemen staan wij dag en nacht klaar.",
+    extra: "Snelle reactie voorkomt vaak grotere schade."
+  },
+  planning: {
+    label: "Condities",
+    title: "Weersafhankelijke planning",
+    text: "Dakwerk is sterk afhankelijk van regen, wind en temperatuur.",
+    extra: "Een goede planning verhoogt veiligheid en kwaliteit."
+  },
+  actie: {
+    label: "Actie",
+    title: "Voorjaarsactie: 10% korting op dakinspectie",
+    text: "Nieuwe aanvragen profiteren tijdelijk van korting op een professionele dakinspectie.",
+    extra: "Preventieve inspectie is goedkoper dan grote reparaties achteraf."
+  }
+};
+
+function openPanel(key) {
+  const panel = document.getElementById("slidePanel");
+  const content = document.getElementById("slideContent");
+
+  document.getElementById("panelLabel").textContent = panelData[key].label;
+  document.getElementById("panelTitle").textContent = panelData[key].title;
+  document.getElementById("panelText").textContent = panelData[key].text;
+  document.getElementById("panelExtra").textContent = panelData[key].extra;
+
+  panel.classList.remove("hidden");
+  document.body.classList.add("overflow-hidden");
+
+  requestAnimationFrame(() => {
+    content.classList.remove("translate-x-full");
+    content.classList.add("translate-x-0");
+  });
+}
+
+function closePanel() {
+  const panel = document.getElementById("slidePanel");
+  const content = document.getElementById("slideContent");
+
+  content.classList.remove("translate-x-0");
+  content.classList.add("translate-x-full");
+
+  setTimeout(() => {
+    panel.classList.add("hidden");
+    document.body.classList.remove("overflow-hidden");
+  }, 300);
+}
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    closePanel();
+  }
+});
+
+const serviceModal = document.getElementById('service-modal');
+const modalTitle = document.getElementById('modal-title');
+const modalLabel = document.getElementById('modal-label');
+const modalDescription = document.getElementById('modal-description');
+const modalPoints = document.getElementById('modal-points');
+
+function openServiceModal(service) {
+  modalTitle.textContent = service.title || '';
+  modalLabel.textContent = service.label || '';
+  modalDescription.textContent = service.description || '';
+
+  modalPoints.innerHTML = '';
+
+  if (service.points && Array.isArray(service.points)) {
+    service.points.forEach(point => {
+      const li = document.createElement('li');
+      li.className = 'flex items-start gap-3 text-white/80';
+
+      li.innerHTML = `
+        <span class="mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-gold/15">
+          <span class="block h-2 w-2 rounded-full bg-gold-light"></span>
+        </span>
+        <span>${point}</span>
+      `;
+
+      modalPoints.appendChild(li);
+    });
+  }
+
+  serviceModal.classList.remove('hidden');
+  serviceModal.classList.add('flex');
+  document.body.classList.add('overflow-hidden');
+}
+
+function closeServiceModal() {
+  serviceModal.classList.add('hidden');
+  serviceModal.classList.remove('flex');
+  document.body.classList.remove('overflow-hidden');
+}
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') {
+    closeServiceModal();
+  }
+});
